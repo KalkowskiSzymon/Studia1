@@ -23,8 +23,18 @@ print(multiply_by_two_comprehension([1, 2, 3, 4, 5]))
 
 
 #C
-def display_numbers(numbers):
+def display_even_numbers(numbers):
     for number in numbers:
-        print(number)
+        if number % 2 == 0:
+            print(number)
 
-display_numbers(range(10))
+
+display_even_numbers(range(10))
+
+#D
+
+def display_every_second(numbers):
+    for i in range(0, len(numbers), 2):
+        print(numbers[i])
+
+display_every_second(range(10))
