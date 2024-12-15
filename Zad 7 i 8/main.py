@@ -4,7 +4,16 @@ from typing import List
 
 
 class Brewery:
-    def __init__(self, id: int, name: str, brewery_type: str, city: str, state: str, street: str, postal_code: str):
+    def __init__(
+        self,
+        id: int,
+        name: str,
+        brewery_type: str,
+        city: str,
+        state: str,
+        street: str,
+        postal_code: str,
+    ):
         self.id = id
         self.name = name
         self.brewery_type = brewery_type
@@ -17,7 +26,7 @@ class Brewery:
         return f"Brewery ID: {self.id}\nName: {self.name}\nType: {self.brewery_type}\nCity: {self.city}\nState: {self.state}\nStreet: {self.street}\nPostal Code: {self.postal_code}\n"
 
 
-def fetch_breweries(city: str = '') -> List[Brewery]:
+def fetch_breweries(city: str = "") -> List[Brewery]:
     url = "https://api.openbrewerydb.org/breweries"
     params = {"by_city": city} if city else {}
     response = requests.get(url, params=params)
@@ -33,7 +42,7 @@ def fetch_breweries(city: str = '') -> List[Brewery]:
                 city=brewery_data.get("city", "N/A"),
                 state=brewery_data.get("state", "N/A"),
                 street=brewery_data.get("street", "N/A"),
-                postal_code=brewery_data.get("postal_code", "N/A")
+                postal_code=brewery_data.get("postal_code", "N/A"),
             )
             breweries.append(brewery)
         return breweries
@@ -42,17 +51,15 @@ def fetch_breweries(city: str = '') -> List[Brewery]:
         return []
 
 
-
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Fetch breweries data.")
-    parser.add_argument('--city', type=str, help="City to filter breweries by")
+    parser.add_argument("--city", type=str, help="City to filter breweries by")
     return parser.parse_args()
-
 
 
 def main():
     args = parse_arguments()
-    city = args.city if args.city else ''
+    city = args.city if args.city else ""
 
     breweries = fetch_breweries(city)
 

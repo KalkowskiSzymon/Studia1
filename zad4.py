@@ -1,4 +1,4 @@
-def check_sum(a: int, b: int, c: int)-> int:
+def check_sum(a: int, b: int, c: int) -> int:
     return a + b >= c
 
 
