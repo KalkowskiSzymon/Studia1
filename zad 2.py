@@ -34,9 +34,8 @@ def display_even_numbers(numbers):
 
 display_even_numbers(range(10))
 
+
 # D
-
-
 def display_every_second(numbers):
     for i in range(0, len(numbers), 2):
         print(numbers[i])
