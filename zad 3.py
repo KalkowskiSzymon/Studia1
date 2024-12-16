@@ -46,6 +46,7 @@ house = House(
     price=500000,
     address="Kostromska 78",
     plot=800)
+
 flat = Flat(
     area=80,
     rooms=3,
