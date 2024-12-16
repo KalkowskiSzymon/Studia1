@@ -3,7 +3,7 @@ name: Lint code with pycodestyle
 on:
   push:
     branches:
-      - '*'  # Monitorowanie wszystkich gałęzi
+      - '*' 
   pull_request:
     branches:
       - '*'
