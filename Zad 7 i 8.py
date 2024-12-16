@@ -23,7 +23,15 @@ class Brewery:
         self.postal_code = postal_code
 
     def __str__(self):
-        return f"Brewery ID: {self.id}\nName: {self.name}\nType: {self.brewery_type}\nCity: {self.city}\nState: {self.state}\nStreet: {self.street}\nPostal Code: {self.postal_code}\n"
+        return (
+            f"Brewery ID: {self.id}\n"
+            f"Name: {self.name}\n"
+            f"Type: {self.brewery_type}\n"
+            f"City: {self.city}\n"
+            f"State: {self.state}\n"
+            f"Street: {self.street}\n"
+            f"Postal Code: {self.postal_code}\n"
+        )
 
 
 def fetch_breweries(city: str = "") -> List[Brewery]:
