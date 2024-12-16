@@ -8,8 +8,9 @@ class Library:
 
     def __str__(self):
         return (
-            f"Biblioteka mieszcząca się przy ul {self.street}, {self.city} {self.zip_code}. "
-            f"Godziny Otwarcia: {self.open_hours}, Telefon kontaktowy: {self.phone}"
+            f"Biblioteka przy ul {self.street}, {self.city} {self.zip_code}. "
+            f"Godziny Otwarcia: {self.open_hours} "
+            f"Telefon : {self.phone} "
         )
 
 
@@ -36,14 +37,21 @@ class Employee:
 
     def __str__(self):
         return (
-            f"Pracownik: {self.first_name} {self.last_name}, Data wynajmu: {self.hire_date}, "
-            f"Data urodzenia: {self.birth_date}, Adres: {self.street}, {self.city} {self.zip_code}, Telefon kontaktowy: {self.phone}"
+            f"Pracownik: {self.first_name} {self.last_name} "
+            f"Data wynajmu: {self.hire_date} "
+            f"Data urodzenia: {self.birth_date} "
+            f"Adres: {self.street}, {self.city}, {self.zip_code} "
+            f"Telefon kontaktowy: {self.phone} "
         )
 
 
 class Book:
     def __init__(
-        self, library, publication_date, author_name, author_surname, number_of_pages
+        self, library,
+        publication_date,
+        author_name,
+        author_surname,
+        number_of_pages
     ):
         self.library = library
         self.publication_date = publication_date
@@ -53,7 +61,8 @@ class Book:
 
     def __str__(self):
         return (
-            f"Autor {self.author_name} {self.author_surname}, Data publikacji: {self.publication_date}, "
+            f"Autor {self.author_name} {self.author_surname}, "
+            f"Data publikacji: {self.publication_date}, "
             f"Stron: {self.number_of_pages}, Dostępna w: {self.library}"
         )
 
@@ -68,16 +77,26 @@ class Order:
     def __str__(self):
         books_str = "\n    ".join(str(book) for book in self.books)
         return (
-            f"Data zamówienia: {self.order_date}, Przetworzone przez: {self.employee}, Uczeń: {self.student}\n"
-            f"Książki w porządku:\n    {books_str}"
+            f"Data zamówienia: {self.order_date}, "
+            f"Przetworzone przez: {self.employee}, Uczeń: {self.student}\n "
+            f"Książki w porządku:\n    {books_str} "
         )
 
 
 library1 = Library(
-    "Warszawa", "Armii Krajowej 29", "00-001", "9:00 - 17:00", "+48 22 123 45 67"
+    "Warszawa",
+    "Armii Krajowej 29",
+    "00-001",
+    "9:00 - 17:00",
+    "+48 22 123 45 67"
 )
+
 library2 = Library(
-    "Kraków", "Wojska Polskiego 10", "31-042", "10:00 - 18:00", "+48 12 765 43 21"
+    "Kraków",
+    "Wojska Polskiego 10",
+    "31-042",
+    "10:00 - 18:00",
+    "+48 12 765 43 21"
 )
 
 book1 = Book(library1, "2020-01-15", "J.K.", "Rowling", 400)
