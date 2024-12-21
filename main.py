@@ -14,11 +14,19 @@ print(f"Czy {student2.name} zdał(a)? {student2.is_passed()}")
 
 
 library1 = Library(
-    "Warszawa", "Armii Krajowej 29", "00-001", "9:00 - 17:00", "+48 22 123 45 67"
+    "Warszawa",
+    "Armii Krajowej 29",
+    "00-001",
+    "9:00 - 17:00",
+    "+48 22 123 45 67"
 )
 
 library2 = Library(
-    "Kraków", "Wojska Polskiego 10", "31-042", "10:00 - 18:00", "+48 12 765 43 21"
+    "Kraków",
+    "Wojska Polskiego 10",
+    "31-042",
+    "10:00 - 18:00",
+    "+48 12 765 43 21"
 )
 
 book1 = Book(library1, "2020-01-15", "J.K.", "Rowling", 400)
@@ -68,9 +76,18 @@ order2 = Order(employee2, student2, [book3, book4, book5], "2024-12-10")
 print(order1)
 print(order2)
 
-house = House(area=200, rooms=5, price=500000, address="Kostromska 78", plot=800)
+house = House(
+    area=200,
+    rooms=5,
+    price=500000,
+    address="Kostromska 78",
+    plot=800)
 
-flat = Flat(area=80, rooms=3, price=200000, address="Słowackiego 44", floor=4)
+flat = Flat(area=80,
+            rooms=3,
+            price=200000,
+            address="Słowackiego 44",
+            floor=4)
 
 print(house)
 print(flat)
