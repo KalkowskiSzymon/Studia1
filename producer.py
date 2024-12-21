@@ -9,7 +9,6 @@ class Producer:
         with open(self.task_file, mode="a", newline="") as file:
             writer = csv.writer(file)
             writer.writerow([task_description, "pending"])
-            # Złamana linia w komunikacie
             print(f"Praca '{task_description}' "
                   "dodana do pliku jako 'pending'.")
 
