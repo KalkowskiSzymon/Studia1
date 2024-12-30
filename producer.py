@@ -1,22 +1,31 @@
 import csv
+import uuid
+import time
+
+FILE_NAME = "tasks.csv"
 
 
-class Producer:
-    def __init__(self, task_file="tasks.csv"):
-        self.task_file = task_file
+def create_task():
+    task_id = str(uuid.uuid4())
+    return {"id": task_id, "status": "pending"}
 
-    def add_task_to_file(self, task_description):
-        with open(self.task_file, mode="a", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerow([task_description, "pending"])
-            print(f"Praca '{task_description}' "
-                  "dodana do pliku jako 'pending'.")
 
-    def create_task(self):
-        task_description = input(
-            "Wpisz opis pracy (lub 'exit' aby zakończyć): "
-        )
-        if task_description.lower() == "exit":
-            return False
-        self.add_task_to_file(task_description)
-        return True
+def write_task_to_file(task):
+    try:
+        with open(FILE_NAME, mode="a", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=["id", "status"])
+            if file.tell() == 0:
+                writer.writeheader()
+            writer.writerow(task)
+            print(
+                f"Task {task['id']} has been created with status: {task['status']}"
+            )
+    except Exception as e:
+        print(f"Error writing task to file: {e}")
+
+
+if __name__ == "__main__":
+    while True:
+        task = create_task()
+        write_task_to_file(task)
+        time.sleep(10)

@@ -1,47 +1,47 @@
 import csv
 import time
 
+FILE_NAME = "tasks.csv"
 
-class Consumer:
-    def __init__(self, task_file="tasks.csv"):
-        self.task_file = task_file
 
-    def read_tasks_from_file(self):
-        tasks = []
-        try:
-            with open(self.task_file, mode="r", newline="") as file:
-                reader = csv.reader(file)
-                for row in reader:
-                    tasks.append(row)
-        except FileNotFoundError:
-            print("Plik z zadaniami nie istnieje. Tworzymy nowy.")
-        return tasks
+def read_tasks():
+    try:
+        with open(FILE_NAME, mode="r", newline="") as file:
+            reader = csv.DictReader(file)
+            return list(reader)
+    except FileNotFoundError:
+        return []
 
-    def write_tasks_to_file(self, tasks):
-        with open(self.task_file, mode="w", newline="") as file:
-            writer = csv.writer(file)
-            writer.writerows(tasks)
 
-    def process_task(self):
-        tasks = self.read_tasks_from_file()
-        for i, task in enumerate(tasks):
-            description, status = task
-            if status == "pending":
-                print(f"Zadanie '{description}'w trakcie realizacji")
-                tasks[i][1] = "in_progress"
-                self.write_tasks_to_file(tasks)
-                time.sleep(30)
-                print(f"Zadanie '{description}' zostało wykonane!")
-                tasks[i][1] = "done"
-                self.write_tasks_to_file(tasks)
-                break
+def update_task_status(task_id, new_status):
+    tasks = read_tasks()
+    for task in tasks:
+        if task["id"] == task_id:
+            task["status"] = new_status
+            break
+    with open(FILE_NAME, mode="w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=["id", "status"])
+        writer.writeheader()
+        writer.writerows(tasks)
 
-    def consume(self):
-        while True:
-            tasks = self.read_tasks_from_file()
-            pending_tasks = [task for task in tasks if task[1] == "pending"]
 
-            if pending_tasks:
-                self.process_task()
-            else:
-                time.sleep(5)
+def process_task(task):
+    print(f"Processing task {task['id']}...")
+    time.sleep(30)
+    update_task_status(task["id"], "done")
+    print(f"Task {task['id']} is done.")
+
+
+if __name__ == "__main__":
+    while True:
+        tasks = read_tasks()
+        pending_tasks = [task for task in tasks if task["status"] == "pending"]
+
+        if pending_tasks:
+            task_to_process = pending_tasks[0]
+            update_task_status(task_to_process["id"], "in_progress")
+            process_task(task_to_process)
+        else:
+            print("No tasks to process. Checking again in 5 seconds.")
+
+        time.sleep(5)
