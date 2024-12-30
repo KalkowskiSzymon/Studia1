@@ -18,7 +18,7 @@ def write_task_to_file(task):
                 writer.writeheader()
             writer.writerow(task)
             print(
-                f"Task {task['id']} has been created with status: {task['status']}"
+                f"Task {task['id']} created with status: {task['status']}"
             )
     except Exception as e:
         print(f"Error writing task to file: {e}")
