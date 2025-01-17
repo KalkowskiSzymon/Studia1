@@ -19,9 +19,7 @@ class ObjectDetector:
                 print("Błąd: Obraz nie został poprawnie pobrany z URL.")
                 return [], 0
             print("Obraz został pobrany pomyślnie.")
-            return self.process_image(
-                img, save_image
-            )
+            return self.process_image(img, save_image)
         except Exception as e:
             print(f"Zdarzył się błąd przy pobieraniu obrazu: {e}")
             return [], 0

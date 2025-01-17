@@ -1,6 +1,5 @@
 import os
 import uuid
-import pika
 import json
 from flask import Flask, render_template, request, jsonify
 from dotenv import load_dotenv
@@ -9,9 +8,8 @@ import cv2
 from utils import (
     get_unique_image_path,
     send_task_to_queue,
-)  # Zaimportowanie funkcji
+)
 
-# Załaduj zmienne środowiskowe z pliku .env
 load_dotenv()
 
 app = Flask(__name__)
@@ -32,7 +30,7 @@ def detect_url():
     if not url:
         return jsonify({"error": "Brak URL"}), 400
 
-    task_id = str(uuid.uuid4())  # Unikalne ID zadania
+    task_id = str(uuid.uuid4())
     detector = ObjectDetector(model_path, config_path)
     img, person_count = detector.detect_objects(url, save_image=True)
     img_path = os.path.join(
@@ -89,14 +87,13 @@ def detect_upload():
     ):
         return jsonify({"error": "Przesłany plik nie jest obrazem"}), 400
 
-    task_id = str(uuid.uuid4())  # Unikalne ID zadania
+    task_id = str(uuid.uuid4())
     file_path = os.path.join(
         app.config["UPLOAD_FOLDER"], f"{task_id}_{file.filename}"
     )
     file_path = get_unique_image_path(file_path)
     file.save(file_path)
 
-    # Wyślij zadanie do RabbitMQ
     send_task_to_queue(file_path, task_id)
 
     return (
