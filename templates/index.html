@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detekcja Obiektów</title>
+</head>
+<body>
+    <h1>Detekcja Osób na Obrazie</h1>
+
+    <!-- Formularz do wprowadzenia URL -->
+    <form action="/detect/url" method="get">
+        <label for="url">Wprowadź URL obrazu:</label>
+        <input type="text" id="url" name="url" required>
+        <button type="submit">Prześlij</button>
+    </form>
+
+    <br>
+
+    <!-- Formularz do wprowadzenia ścieżki lokalnego obrazu -->
+    <form action="/detect/local" method="get">
+        <label for="image_path">Wprowadź ścieżkę do obrazu lokalnego:</label>
+        <input type="text" id="image_path" name="image_path" required>
+        <button type="submit">Prześlij</button>
+    </form>
+
+    <br>
+
+    <!-- Formularz do przesyłania obrazu -->
+    <form action="/detect/upload" method="POST" enctype="multipart/form-data">
+        <label for="file">Wybierz obraz:</label>
+        <input type="file" id="file" name="file" required>
+        <button type="submit">Prześlij</button>
+    </form>
+
+    <br>
+
+    <!-- Formularz do sprawdzania statusu zadania -->
+    <form action="/check_task" method="get">
+        <label for="task_id">Wprowadź ID zadania:</label>
+        <input type="text" id="task_id" name="task_id" required>
+        <button type="submit">Sprawdź status</button>
+    </form>
+
+    <br>
+

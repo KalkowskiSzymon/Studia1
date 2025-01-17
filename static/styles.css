@@ -1,0 +1,89 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* Header Styling - Make it bold and large */
+h1 {
+    color: #333;
+    font-size: 3em; /* Increased size */
+    margin-bottom: 40px;
+    font-weight: bold; /* Make it bold */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Flexbox for forms to align them in a single row */
+.form-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px; /* Space between forms */
+    width: 90%; /* Adjust width to take most of the viewport */
+    flex-wrap: nowrap;
+}
+
+/* Form styling */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 22%; /* Adjust width to make sure they fit in a row */
+    text-align: center;
+}
+
+/* Input fields and buttons */
+input[type="text"], input[type="file"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Label styling */
+label {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+}
+
+/* Spacing between forms */
+br {
+    margin-bottom: 15px;
+}
+
+/* Styling for the input container (form sections) */
+input[type="text"], input[type="file"], button {
+    box-sizing: border-box;
+}
+
+/* Additional hover effects for forms */
+form:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
