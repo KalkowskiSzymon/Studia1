@@ -102,8 +102,12 @@ def detect_upload():
     )
 
 
-@app.route("/check_task/<task_id>", methods=["GET"])
-def check_task_status(task_id):
+@app.route("/check_task", methods=["GET"])
+def check_task_status():
+    task_id = request.args.get("task_id")
+    if not task_id:
+        return jsonify({"error": "Nie podano task_id"}), 400
+
     result_path = f"uploads/results/{task_id}_result.json"
 
     if not os.path.exists(result_path):
